@@ -19,6 +19,11 @@ Usage
 	#include <MaxThermo.h>
 	MaxThermo::Max31855 thermocouple(chip_select_pin, chip_clock_pin, chip_serial_in_pin);
 	
+	// at some point (in setup() with Arduino) you need to start it up
+	tdc.begin();
+
+	// from here on in, you can call update() and access the collected data.
+	// See the included examples or the project home for info
 	if (tdc.update() == MaxThermo::Status::OK)
 	{
 	
