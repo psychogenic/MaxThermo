@@ -13,20 +13,19 @@ This library allows you easily play with various thermocouple-to-digital convert
 Usage
 =====
 
-// in the simplest case, you simply create the device, ask it to fetch 
-// current data (through SPI, using update()) and access the temp().
-
-#include <MaxThermo.h>
-
-MaxThermo::Max31855 thermocouple(chip_select_pin, chip_clock_pin, chip_serial_in_pin);
-
-if (tdc.update() == MaxThermo::Status::OK)
-{
-
-	OUTPUT("The temperature is currently:");
-	OUTPUT(tdc.temp());
-}
-
+	// in the simplest case, you simply create the device, ask it to fetch 
+	// current data (through SPI, using update()) and access the temp().
+	
+	#include <MaxThermo.h>
+	MaxThermo::Max31855 thermocouple(chip_select_pin, chip_clock_pin, chip_serial_in_pin);
+	
+	if (tdc.update() == MaxThermo::Status::OK)
+	{
+	
+		OUTPUT("The temperature is currently:");
+		OUTPUT(tdc.temp());
+	}
+	
 
 See the project home for more details on API and use: http://flyingcarsandstuff.com/project/MaxThermo/ 
 
