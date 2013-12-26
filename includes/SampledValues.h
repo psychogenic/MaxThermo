@@ -6,7 +6,7 @@
  *
  * Copyright (C) 2013 Pat Deegan.  All rights reserved.
  *
- * http://www.flyingcarsandstuff.com/projects/MaxThermo/
+ * http://flyingcarsandstuff.com/projects/MaxThermo/
  *
  * MaxThermo::SampledValues -- encapsulates a single sampling event.
  * This is the interface definition.

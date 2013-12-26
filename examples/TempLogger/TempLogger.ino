@@ -8,7 +8,7 @@
  *
  * Copyright (C) 2013 Pat Deegan.  All rights reserved.
  *
- * http://www.flyingcarsandstuff.com/projects/MaxThermo/
+ * http://flyingcarsandstuff.com/projects/MaxThermo/
  *
  *
  * Please let me know if you use Thermocouple in your projects, and
