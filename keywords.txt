@@ -1,0 +1,56 @@
+#######################################
+# Syntax Coloring Map For MaxThermo lib
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+Max31855	KEYWORD1
+Max6675	KEYWORD1
+SampledValues	KEYWORD1
+Sample	KEYWORD1
+LogSummary	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+void begin	KEYWORD2
+quickReads	KEYWORD2
+setQuickReads	KEYWORD2
+updateThermoReading	KEYWORD2
+updateThermoAndInternalReading	KEYWORD2
+update	KEYWORD2
+status	KEYWORD2
+isOK	KEYWORD2
+isFault	KEYWORD2
+circuitOpen	KEYWORD2
+circuitShort	KEYWORD2
+temp	KEYWORD2
+tempAsInt	KEYWORD2
+thermoTempAsInt	KEYWORD2
+thermoTemp	KEYWORD2
+internalTempAsInt	KEYWORD2
+internalTemp	KEYWORD2
+thermoTempIsNegative	KEYWORD2
+internalTempIsNegative	KEYWORD2
+tempIsNegative	KEYWORD2
+thermo	KEYWORD2
+internal	KEYWORD2
+#######################################
+# Constants (LITERAL1)
+#######################################
+MaxThermo	LITERAL1
+Status	LITERAL1
+NoReading	LITERAL1
+OK	LITERAL1
+NoResponse	LITERAL1
+InconsistentResponses	LITERAL1
+ShortToVcc	LITERAL1
+ShortToGround	LITERAL1
+OpenCircuit	LITERAL1
+LogFull	LITERAL1
+UnknownError	LITERAL1
