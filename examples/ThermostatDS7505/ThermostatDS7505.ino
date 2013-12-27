@@ -193,6 +193,17 @@ void setup()
   SERIAL_BEGIN(serial_baud_rate);
   thermostat.begin(); // calling begin will set everything up, including SPI
 
+  // first we do some DS7505-specific stuff
+  
+  // set the thermostat temperature: 
+  // set target temp to 23.5f with hysteresis at 21 (C)
+  thermostat.setThermostat(23.5f, 21.0f);
+  
+  // set the thermostat fault tolerance in the mid-range:
+  thermostat.setTOSTrigger(MaxThermo::DS7505::TOS_4_Faults);
+  
+
+
   // we tell the lib we want to send the sample from each
   // update() to this array of logging samples
   thermostat.startLoggingTo(the_samples, num_samples_to_log);
