@@ -20,7 +20,6 @@
 
 namespace MaxThermo {
 
-
 DS7505::DS7505(uint8_t address_bits2, uint8_t address_bits1, uint8_t address_bits0,
 		Resolution res) :
 		ThermocoupleDevice(0, 0, 0, false, false),
@@ -42,6 +41,57 @@ DS7505::DS7505(uint8_t full_address_bits, Resolution res) :
 
 	refreshI2CAddress();
 
+}
+
+void DS7505::setTOSTrigger(FaultTolerance tolerance)
+{
+
+	SET_CONFIG_REG(FAULTTOL, (uint8_t)tolerance);
+	updateConfigRegister();
+
+}
+void DS7505::setThermostat(float temperature, float hysteresis)
+{
+
+	  if (temperature < -55.0 || hysteresis < -55.0
+			  || temperature > 125.0 || hysteresis > 125.0
+			  || temperature < hysteresis)
+		  return;
+
+
+	  uint16_t tempBits = prepareTemperatureBits(temperature);
+	  uint16_t hystBits = prepareTemperatureBits(hysteresis);
+
+	  TRANSMIT_3BYTES_TO(i2caddress, DS7505_REGISTER_TOS, ( (tempBits & 0xff00) >> 4),
+			  ( (tempBits & 0x00ff)));
+
+	  TRANSMIT_3BYTES_TO(i2caddress, DS7505_REGISTER_HYSTERESIS,
+			  ( (hystBits & 0xff00) >> 4),
+			  ( hystBits & 0x00ff) );
+}
+
+
+
+uint16_t DS7505::prepareTemperatureBits(float temp)
+{
+	bool is_neg = temp < 0;
+	float absTmp = is_neg ? (-1.0 * temp) : temp;
+
+	uint8_t integerTmp = (uint8_t) absTmp;
+
+	float fractionalVal = absTmp - (integerTmp);
+	uint8_t fractionBits = (uint8_t) (fractionalVal * 16.000f);
+
+	uint16_t tempBits = 0;
+
+	uint16_t tempVal = integerTmp << 8 | fractionBits << 4;
+	if (is_neg) {
+		tempBits = 1 << 15 | ~(tempVal - 1);
+	} else {
+		tempBits = tempVal;
+	}
+
+	return tempBits;
 }
 
 void DS7505::begin(int8_t new_addr)

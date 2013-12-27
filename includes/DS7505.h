@@ -79,10 +79,10 @@ namespace MaxThermo
 
 
 		typedef enum faultTolEnum {
-			OSAfter_1_Fault = 0x00, // 00
-			OSAfter_2_Faults= 0x01, // 01
-			OSAfter_4_Faults= 0x02, // 10
-			OSAfter_6_Faults= 0x03, // 11
+			TOS_1_Fault = 0x00, // 00
+			TOS_2_Faults= 0x01, // 01
+			TOS_4_Faults= 0x02, // 10
+			TOS_6_Faults= 0x03, // 11
 		} FaultTolerance;
 
 		DS7505(uint8_t address2, uint8_t address1, uint8_t address0, Resolution res=Resolution_10bits);
@@ -90,6 +90,10 @@ namespace MaxThermo
 
 
 		virtual ~DS7505() {}
+
+		/* thermostat-specific */
+		void setTOSTrigger(FaultTolerance tolerance);
+		void setThermostat(float temperature, float hysteresis);
 
 
 		/*
@@ -127,6 +131,7 @@ namespace MaxThermo
 
 		void refreshI2CAddress();
 		void updateConfigRegister();
+		uint16_t prepareTemperatureBits(float temp);
 
 		Sample last_sample;
 		uint8_t configRegister;
