@@ -54,6 +54,12 @@
 		Wire.write((uint8_t)b2); \
 		Wire.endTransmission()
 
+#define TRANSMIT_3BYTES_TO(addr, b1, b2, b3)	\
+		Wire.beginTransmission(addr); \
+		Wire.write((uint8_t)b1); \
+		Wire.write((uint8_t)b2); \
+		Wire.write((uint8_t)b3); \
+		Wire.endTransmission()
 
 #define REQUEST_BYTES_FROM(addr, num) \
 		Wire.requestFrom(addr, num); \
@@ -77,11 +83,18 @@
 
 #define PIN_READ(pin)			digitalRead((pin))
 
-
+#ifdef DEBUG
 #define DEBUG_OUTPUT(msg)			Serial.print(msg)
 #define DEBUG_OUTPUTN(msg, b)		Serial.print(msg, b)
 #define DEBUG_OUTPUTLN(msg)			Serial.println(msg)
 #define DEBUG_OUTPUTNLN(msg, b)		Serial.println(msg, b)
+#else
+#define DEBUG_OUTPUT(msg)
+#define DEBUG_OUTPUTN(msg, b)
+#define DEBUG_OUTPUTLN(msg)
+#define DEBUG_OUTPUTNLN(msg, b)
+#endif
+
 
 
 
