@@ -26,19 +26,20 @@
  * See file LICENSE for further informations on licensing
  * terms.
  */
-#ifndef MAXTHERMOLIB_MX6675_SAMPLEDVALUES_H_
-#define MAXTHERMOLIB_MX6675_SAMPLEDVALUES_H_
+#ifndef MAXTHERMOLIB_DS7505_SAMPLEDVALUES_H_
+#define MAXTHERMOLIB_DS7505_SAMPLEDVALUES_H_
 #include "../SampledValues.h"
 #include "../InternalDataStub.h"
 
 namespace MaxThermo {
-namespace M6675 {
-// no support for internal data, just use stub impl
+namespace D7505 {
+
+
 typedef MaxThermo::InternalDataStub InternalData;
 
 
 typedef struct SampleRawDataStruct {
-	MaxThermo::M6675::ThermocoupleData thermo;
+	MaxThermo::D7505::ThermocoupleData thermo;
 
 	SampleRawDataInit init;
 
@@ -61,7 +62,8 @@ public:
 	SampledValues() {}
 	virtual ~SampledValues() {}
 
-	SampledValues(SampleRawDataStruct & rawdata) : data(rawdata), full_sample(true)
+	SampledValues(SampleRawDataStruct & rawdata) : data(rawdata),
+			full_sample(true)
 	{
 	}
 	SampledValues(uint16_t tdata) : data(tdata), full_sample(true)
@@ -72,11 +74,11 @@ public:
 	ThermocoupleData * thermo() { return &(data.thermo);}
 	InternalData * internal() { return NULL;}
 
-	MaxThermo::M6675::SampleRawData	data;
+	MaxThermo::D7505::SampleRawData	data;
 	bool full_sample;
 
 };
 
-} /* namespace M6675 */
+} /* namespace D7505 */
 } /* namespace MaxThermo */
-#endif /* MAXTHERMOLIB_MX6675_SAMPLEDVALUES_H_ */
+#endif /* MAXTHERMOLIB_DS7505_SAMPLEDVALUES_H_ */

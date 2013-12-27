@@ -36,6 +36,8 @@
 namespace MaxThermo
 {
 
+
+
 	typedef uint8_t PinNumber;
 
 	typedef struct logSummaryStruct {
@@ -182,8 +184,6 @@ namespace MaxThermo
 		virtual void initSPI();
 	protected:
 
-		virtual Status::Result determineError() = 0;
-
 		virtual SampleSummary getSampleSummary(SampleRawDataInit* sample_container, uint16_t index) = 0;
 
 		PinNumber nSelect_pin;
@@ -199,6 +199,7 @@ namespace MaxThermo
 		SampleRawDataInit * sample_log_array;
 
 	};
+
 
 
 } /* namespace MaxThermo */

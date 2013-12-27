@@ -7,6 +7,7 @@
 #######################################
 Max31855	KEYWORD1
 Max6675	KEYWORD1
+DS7505	KEYWORD1
 SampledValues	KEYWORD1
 Sample	KEYWORD1
 LogSummary	KEYWORD1
@@ -54,3 +55,8 @@ ShortToGround	LITERAL1
 OpenCircuit	LITERAL1
 LogFull	LITERAL1
 UnknownError	LITERAL1
+Resolution_9bits	LITERAL1
+Resolution_10bits	LITERAL1
+Resolution_11bits	LITERAL1
+Resolution_12bits	LITERAL1
+

@@ -35,6 +35,33 @@
 #ifdef MAXTHERMOLIB_PLATFORM_ARDUINO
 #include <Arduino.h>
 
+#ifdef MAXTHERMOLIB_ENABLE_I2C_SUPPORT
+// I2C stuff...
+#include <Wire.h>
+
+
+#define WAIT_UNTIL_AVAILABLE()		do { ; } while(!Wire.available())
+
+#define TRANSMIT_BYTE_TO(addr, b)	\
+		Wire.beginTransmission(addr); \
+		Wire.write((uint8_t)b); \
+		Wire.endTransmission()
+
+
+#define TRANSMIT_2BYTES_TO(addr, b1, b2)	\
+		Wire.beginTransmission(addr); \
+		Wire.write((uint8_t)b1); \
+		Wire.write((uint8_t)b2); \
+		Wire.endTransmission()
+
+
+#define REQUEST_BYTES_FROM(addr, num) \
+		Wire.requestFrom(addr, num); \
+		WAIT_UNTIL_AVAILABLE()
+
+#define RECEIVE_BYTE()		((uint8_t)Wire.read())
+
+#endif
 
 #define DELAY_MS(ms)		delay(ms)
 #define DELAY_uS(us)		delayMicroseconds(us)

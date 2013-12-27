@@ -33,7 +33,27 @@
 #define MAXTHERMO_LIB_VERSION		1
 #define MAXTHERMO_LIB_SUBVERSION	0
 
-#define MAXTHERMO_VERSION_AT_LEAST(v, sub)			( (MAXTHERMO_LIB_SUBVERSION >= sub) or (MAXTHERMO_LIB_VERSION > v))
+
+/*
+ * MAXTHERMOLIB_ENABLE_I2C_SUPPORT
+ *
+ * If you want to use I2C -- e.g. for the DS7505 device and its
+ * "1-wire" protocol, you need to un-comment the define below.
+ *
+ * This will require you to have an
+ * 	#include <Wire.h>
+ * statement prior to the MaxThermo include in your program.
+ *
+ * Because of the dumb way the Arduino IDE builds programs, you
+ * can't simply define this flag in your sketch: do it here.
+ *
+ */
+//
+#define MAXTHERMOLIB_ENABLE_I2C_SUPPORT
+
+
+
+
 
 /*
  * MAXTHERMOLIB_PLATFORM
@@ -46,7 +66,6 @@
  * everything is setup to make the code independent of these details.
  */
 #define MAXTHERMOLIB_PLATFORM_ARDUINO
-
 
 
 
@@ -93,5 +112,10 @@
 #if defined(MAXTHERMOLIB_SPI_BITBANG) and defined(MAXTHERMOLIB_SPI_ARDUINO)
 #error "Can't use multiple MAXTHERMOLIB_SPI_* methods--choose one!"
 #endif
+
+
+
+#define MAXTHERMO_VERSION_AT_LEAST(v, sub)			( (MAXTHERMO_LIB_SUBVERSION >= sub) or (MAXTHERMO_LIB_VERSION > v))
+
 
 #endif /* MAXTHERMOLIB_CONFIG_H_ */

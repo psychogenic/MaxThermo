@@ -1,5 +1,5 @@
 /*
- * MaxThermo.h -- main include header,
+ * InternalDataStub.h -- header for dummy internal data struct,
  * part of MaxThermo Thermocouple-to-digital
  * converter library for AVR and Arduino-compatible devices.
  *
@@ -26,28 +26,42 @@
  * See file LICENSE for further informations on licensing
  * terms.
  */
+#ifndef MAXTHERMO_INTERNALDATA_DUMMY_H_
+#define MAXTHERMO_INTERNALDATA_DUMMY_H_
 
-#ifndef MAXTHERMO_MAINHEADER_H_
-#define MAXTHERMO_MAINHEADER_H_
-
-#define MAXTHERMO_C_TO_F(v)		( ((v) * 9.000/5.000) + 32.000)
-
-#include "includes/ThermoLibConfig.h"
-#include "includes/Max31855.h"
-#include "includes/Max6675.h"
+#include "ThermoLibIncludes.h"
 
 
-#ifdef MAXTHERMOLIB_ENABLE_I2C_SUPPORT
-#include "includes/DS7505.h"
-#endif
+namespace MaxThermo
+{
 
 
-#if defined(DEBUG) and defined(MAXTHERMOLIB_PLATFORM_ARDUINO)
-int freeRAM();
-#endif
+	typedef struct InternalDummyDataStruct {
 
-#if defined(CUSTOM_ATEXIT_CXX_METHOD) and ! defined(NO_ATEXIT)
-extern "C" void atexit (void);
-#endif
 
-#endif /* MAXTHERMO_H_ */
+		// temp() -- get the real temperature measurement
+		 float temp() { return 0;}
+
+		// tempAsInt() -- get the integer portion of temp measurement
+		 int8_t tempAsInt() { return 0;}
+
+		// various flag checks
+		 bool isNegative() { return false;}
+		 bool isOK() { return true;}
+		 bool isFault() { return false;}
+		 bool isShorted() { return false;}
+		 bool isGroundShort() { return false; }
+		 bool isVccShort() { return false;}
+		 bool isOpenCircuit() { return false;}
+
+
+	} InternalDataStub; // for use by classes that don't support internal data.
+
+
+
+
+
+
+} /* namespace MaxThermo */
+
+#endif /* MAXTHERMO_INTERNALDATA_DUMMY_H_ */
