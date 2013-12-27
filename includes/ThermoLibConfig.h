@@ -48,8 +48,7 @@
  * can't simply define this flag in your sketch: do it here.
  *
  */
-//
-#define MAXTHERMOLIB_ENABLE_I2C_SUPPORT
+// #define MAXTHERMOLIB_ENABLE_I2C_SUPPORT
 
 
 
