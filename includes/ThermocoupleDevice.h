@@ -125,7 +125,23 @@ namespace MaxThermo
 		 */
 		bool isLogging() { return sample_log_array != NULL;  }
 		Status::Result startLoggingTo(SampleRawDataInit * sample_container, uint16_t container_size);
-		void stopLogging();
+		/*
+		 * pause the logging of update()s to the sample_container, leaving current state intact.
+		 */
+		bool pauseLogging();
+
+		/*
+		 * 	resumeLogging()
+		 * 	Resume logging after calls to startLoggingTo() + pauseLogging()
+		 */
+		bool resumeLogging();
+
+		/*
+		 * stopLogging()
+		 * Cease all logging activities, may be called anytime when logging but MUST be
+		 * called once update()/status() starts returning LogFull status.
+		 */
+		uint16_t stopLogging();
 		LogSummary logSummary(SampleRawDataInit * sample_container, uint16_t container_size);
 
 
@@ -197,6 +213,7 @@ namespace MaxThermo
 		uint16_t sample_log_idx;
 		uint16_t sample_log_size;
 		SampleRawDataInit * sample_log_array;
+		SampleRawDataInit * sample_log_swap;
 
 	};
 

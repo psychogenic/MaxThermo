@@ -42,8 +42,7 @@ ThermocoupleDevice::ThermocoupleDevice(
 		quick_reads(
 				quickReads), last_status(
 				Status::NoReading), sample_log_idx(0), sample_log_size(0),
-				sample_log_array(
-				NULL) {
+				sample_log_array(NULL), sample_log_swap(NULL) {
 }
 
 #ifdef MAXTHERMO_SUPPORTS_CUSTOM_SPI_PINS
@@ -55,8 +54,7 @@ ThermocoupleDevice::ThermocoupleDevice(PinNumber nSelectPin, PinNumber clockPin,
 				auto_init_spi(autoInitSPI),
 				quick_reads(quickReads), last_status(
 						Status::NoReading), sample_log_idx(0), sample_log_size(0),
-						sample_log_array(
-						NULL)
+						sample_log_array(NULL), sample_log_swap(NULL)
 {
 
 }
@@ -121,10 +119,37 @@ Status::Result ThermocoupleDevice::startLoggingTo(
 
 }
 
-void ThermocoupleDevice::stopLogging() {
+bool ThermocoupleDevice::pauseLogging()
+{
+	if (sample_log_array == NULL)
+		return false;
+
+	sample_log_swap = sample_log_array;
 	sample_log_array = NULL;
-	sample_log_idx = 0;
+	return true;
+}
+bool ThermocoupleDevice::resumeLogging()
+{
+	if (sample_log_swap == NULL || sample_log_array != NULL)
+		return false;
+
+	sample_log_array = sample_log_swap;
+	sample_log_swap = NULL;
+
+	return true;
+
+
+}
+
+uint16_t ThermocoupleDevice::stopLogging() {
+	sample_log_swap = NULL;
+	sample_log_array = NULL;
 	sample_log_size = 0;
+
+	uint16_t num_samples = sample_log_idx;
+	sample_log_idx = 0;
+
+	return num_samples;
 }
 
 
