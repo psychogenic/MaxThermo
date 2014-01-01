@@ -1,14 +1,14 @@
 MaxThermo
 =========
 
-MaxThermo: Thermocouple to digital converter library for microcontrollers (Arduino/AVR)
+MaxThermo: Thermocouple/thermostat/thermometer to digital converter library for microcontrollers.
 
 	Copyright (C) 2013 Pat Deegan, psychogenic.com
-
 	http://flyingcarsandstuff.com/project/MaxThermo/
 
 
-This library allows you easily play with various thermocouple-to-digital converter chips, Max31855 and Max6675 at the moment.
+This library allows you easily play with various thermocouple-to-digital converter and other temperature-related chips.
+Currently supported: Max31855 and Max6675 (thermocouple-to-digital) and DS7505 (thermometer/thermostat).
 
 Usage
 =====
@@ -32,14 +32,15 @@ Usage
 	}
 	
 
-See the project home for more details on API and use: http://flyingcarsandstuff.com/project/MaxThermo/ 
+See the project home for more details on API and use: http://flyingcarsandstuff.com/project/MaxThermo/ as well as the included examples.
 
 Features
 ========
-	* Support for multiple device types using the same API (Max31855, Max6675)
-	* Support for thermocouple data
+	* Support for multiple device types using the same API (Max31855, Max6675, DS7505)
+	* Support for thermocouple/temperature data
 	* Support internal data (where available, like on the Max31855), to access device temperature, specific fault descriptions (open circuit, short circuits, etc.)
 	* Support for memory-efficient logging (see the TempLogger example)
+	* Unified API is extended as required to support device-specific features (e.g. setThermostat() for the DS7505)
 
 License
 =======
