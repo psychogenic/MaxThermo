@@ -19,7 +19,7 @@ LogSummary	KEYWORD1
 #######################################
 # Instances (KEYWORD2)
 #######################################
-void begin	KEYWORD2
+begin	KEYWORD2
 quickReads	KEYWORD2
 setQuickReads	KEYWORD2
 updateThermoReading	KEYWORD2
